@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  Home.swift
 //  LocalMarkets
 //
 //  Created by Michael Koch on 5/16/20.
@@ -8,14 +8,16 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Home: View {
     var body: some View {
-        Text("Hello, World!")
+
+
+        Text("Hi")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Home()
     }
 }
