@@ -9,15 +9,18 @@
 import SwiftUI
 
 struct Home: View {
+
+    @EnvironmentObject private var locationProvider: LocationProvider
+
     var body: some View {
-
-
-        Text("Hi")
+        MapView()
+            .environmentObject(locationProvider)
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+            .environmentObject(LocationProvider())
     }
 }
