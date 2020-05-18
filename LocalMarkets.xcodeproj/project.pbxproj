@@ -22,6 +22,7 @@
 		4E7997D22471BEFA001C8493 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D12471BEFA001C8493 /* APIClient.swift */; };
 		4E7997D42472016E001C8493 /* MarketsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D32472016E001C8493 /* MarketsAPIClient.swift */; };
 		4E7997D724720272001C8493 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D624720272001C8493 /* Market.swift */; };
+		4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D82472038A001C8493 /* NearbyMarkets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		4E7997D12471BEFA001C8493 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4E7997D32472016E001C8493 /* MarketsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsAPIClient.swift; sourceTree = "<group>"; };
 		4E7997D624720272001C8493 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		4E7997D82472038A001C8493 /* NearbyMarkets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMarkets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				4E7997D624720272001C8493 /* Market.swift */,
+				4E7997D82472038A001C8493 /* NearbyMarkets.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				4E79979624709A5A001C8493 /* LocalMarkets.xcdatamodeld in Sources */,
 				4E79979124709A5A001C8493 /* AppDelegate.swift in Sources */,
 				4E7997CC24709E0D001C8493 /* LocationProvider.swift in Sources */,
+				4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */,
 				4E7997C424709A9E001C8493 /* Home.swift in Sources */,
 				4E79979324709A5A001C8493 /* SceneDelegate.swift in Sources */,
 				4E7997D724720272001C8493 /* Market.swift in Sources */,

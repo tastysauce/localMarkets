@@ -16,7 +16,7 @@ struct APIClient {
         case statusCode(_ code: Int)
     }
 
-    static func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+    func run<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         URLSession.shared.dataTaskPublisher(for: request)
             .retry(2)
             .tryMap { result in

@@ -16,9 +16,32 @@ public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Boo
     return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
 }
 
+struct Location {
+    var latitude: Double
+    var longitude: Double
+
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+
+    init(coordinate: CLLocationCoordinate2D) {
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+    }
+
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    static var invalidLocation: Location {
+        Location(coordinate: kCLLocationCoordinate2DInvalid)
+    }
+}
+
 class LocationProvider: NSObject, ObservableObject {
 
-    @Published var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
+    @Published var location: Location = .invalidLocation
 
     private let locationManager = CLLocationManager()
 
@@ -54,7 +77,7 @@ extension LocationProvider: CLLocationManagerDelegate {
             return
         }
 
-        coordinate = mostRecentLocationCoordinate
+        location = Location(coordinate: mostRecentLocationCoordinate)
     }
 
 }

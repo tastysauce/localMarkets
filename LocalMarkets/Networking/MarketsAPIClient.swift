@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import MapKit
 
 struct MarketsResponse: Codable {
     var markets: [Market]
@@ -19,10 +20,12 @@ struct MarketsResponse: Codable {
 
 struct MarketsAPIClient {
 
-    static func requestMarkets() -> AnyPublisher<MarketsResponse, Error> {
+    private let apiClient: APIClient
+
+    func requestMarkets(nearby location: Location) -> AnyPublisher<MarketsResponse, Error> {
         let request: URLRequest = URLRequest(url: URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=37.509280&lng=-122.303370")!)
 
-        return APIClient.run(request)
+        return apiClient.run(request)
             .eraseToAnyPublisher()
     }
 
