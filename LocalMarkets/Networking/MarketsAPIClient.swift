@@ -19,10 +19,32 @@ struct MarketsResponse: Codable {
 
 struct MarketsAPIClient {
 
+    enum MarketsAPIClientError: Error {
+        case badURLComponents
+    }
+
+    enum Path: String {
+        case nearbyMarkets = "locSearch"
+    }
+
+    private let baseURL = URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/")!
     private let apiClient: APIClient
 
     func requestMarkets(nearby location: Location) -> AnyPublisher<MarketsResponse, Error> {
-        let request: URLRequest = URLRequest(url: URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/locSearch?lat=37.509280&lng=-122.303370")!)
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.nearbyMarkets.rawValue), resolvingAgainstBaseURL: true) else {
+            return Fail(outputType: MarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+        }
+
+        components.queryItems = [
+            URLQueryItem(name: "lat", value: String(location.latitude)),
+            URLQueryItem(name: "lng", value: String(location.longitude)),
+        ]
+
+        guard let url = components.url else {
+            return Fail(outputType: MarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+        }
+
+        let request = URLRequest(url: url)
 
         return apiClient.run(request)
             .eraseToAnyPublisher()
