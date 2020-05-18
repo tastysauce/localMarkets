@@ -27,6 +27,11 @@ struct MarketsAPIClient {
         case nearbyMarkets = "locSearch"
     }
 
+    enum QueryParams: String {
+        case latitude = "lat"
+        case longitude = "lng"
+    }
+
     private let baseURL = URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/")!
     private let apiClient: APIClient
 
@@ -36,8 +41,8 @@ struct MarketsAPIClient {
         }
 
         components.queryItems = [
-            URLQueryItem(name: "lat", value: String(location.latitude)),
-            URLQueryItem(name: "lng", value: String(location.longitude)),
+            URLQueryItem(name: QueryParams.latitude.rawValue, value: String(location.latitude)),
+            URLQueryItem(name: QueryParams.longitude.rawValue, value: String(location.longitude)),
         ]
 
         guard let url = components.url else {
