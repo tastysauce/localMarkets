@@ -35,6 +35,10 @@ struct MarketsAPIClient {
     private let baseURL = URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/")!
     private let apiClient: APIClient
 
+    public init(apiClient: APIClient) {
+        self.apiClient = apiClient
+    }
+
     func requestMarkets(nearby location: Location) -> AnyPublisher<MarketsResponse, Error> {
         guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.nearbyMarkets.rawValue), resolvingAgainstBaseURL: true) else {
             return Fail(outputType: MarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()

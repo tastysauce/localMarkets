@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Combine
 
 class NearbyMarkets: ObservableObject {
 
@@ -14,6 +15,7 @@ class NearbyMarkets: ObservableObject {
 
     private let marketsAPIClient: MarketsAPIClient
     private let locationProvider: LocationProvider
+    private var disposeBag: Set<AnyCancellable> = []
 
     init(
         marketsAPIClient: MarketsAPIClient,
@@ -25,6 +27,15 @@ class NearbyMarkets: ObservableObject {
     public func getNearbyMarkets() {
         let currentLocation = locationProvider.location
         marketsAPIClient.requestMarkets(nearby: currentLocation)
+            .receive(on: DispatchQueue.main)
+            .map(\.markets)
+            .replaceError(with: [])
+            .assign(to: \.markets, on: self)
+            .store(in: &disposeBag)
+    }
+
+    static var mockNearbyMarkets: NearbyMarkets {
+        return NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()), locationProvider: LocationProvider())
     }
 
 }
