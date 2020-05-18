@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import MapKit
 
 struct MarketsResponse: Codable {
     var markets: [Market]
