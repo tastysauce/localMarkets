@@ -21,7 +21,7 @@ struct Home: View {
 
             VStack {
                 Button(action: {
-                    self.nearbyMarkets.getNearbyMarkets(for: self.mapViewModel.mapCenterCoordinate)
+                    self.nearbyMarkets.getNearbyMarkets(for: self.mapViewModel.currentMapCoordinate)
                 }) {
                     Text("Get nearby markets")
                 }

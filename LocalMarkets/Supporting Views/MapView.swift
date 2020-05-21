@@ -15,28 +15,44 @@ struct MapView: UIViewRepresentable {
     @EnvironmentObject var mapViewModel: MapViewModel
 
     func makeUIView(context: Context) -> MKMapView {
-        MKMapView(frame: .zero)
+        let mapView = MKMapView(frame: .zero)
+        mapView.delegate = context.coordinator
+        return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        guard mapViewModel.userLocation.coordinate != kCLLocationCoordinate2DInvalid else {
+        guard mapViewModel.currentMapCoordinate.coordinate != kCLLocationCoordinate2DInvalid else {
             print("Invalid")
             return
         }
 
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: mapViewModel.userLocation.coordinate, span: span)
+        let region = MKCoordinateRegion(center: mapViewModel.currentMapCoordinate.coordinate, span: span)
         uiView.setRegion(region, animated: true)
     }
 
-}
+    func makeCoordinator() -> Coordinator {
+        Coordinator(
+            parent: self,
+            mapViewModel: mapViewModel
+        )
+    }
 
-class MapViewCoordinator: NSObject, MKMapViewDelegate {
+    class Coordinator: NSObject, MKMapViewDelegate {
 
-    @Published var mapCenterCoordinate: Location = .invalidLocation
+        private let parent: MapView
+        private let mapViewModel: MapViewModel
 
-    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        mapCenterCoordinate = Location(coordinate: mapView.centerCoordinate)
+        init(parent: MapView,
+             mapViewModel: MapViewModel) {
+            self.parent = parent
+            self.mapViewModel = mapViewModel
+        }
+
+        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            mapViewModel.currentMapCoordinate = Location(coordinate: mapView.centerCoordinate)
+        }
+
     }
 
 }

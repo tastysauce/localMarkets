@@ -11,8 +11,7 @@ import Combine
 
 class MapViewModel: ObservableObject {
 
-    @Published public var userLocation: Location = .invalidLocation
-    @Published public var mapCenterCoordinate: Location = .invalidLocation
+    @Published public var currentMapCoordinate: Location = .invalidLocation
 
     private let locationProvider: LocationProvider
     private let centerOnUserPublisher = PassthroughSubject<Void, Never>()
@@ -25,8 +24,7 @@ class MapViewModel: ObservableObject {
         locationProvider.$location
             .first { $0 != Location.invalidLocation }
             .sink(receiveValue: { location in
-                self.userLocation = location
-                self.mapCenterCoordinate = location
+                self.currentMapCoordinate = location
             })
             .store(in: &disposeBag)
 
@@ -34,7 +32,7 @@ class MapViewModel: ObservableObject {
         centerOnUserPublisher
             .withLatestFrom(locationProvider.$location)
             .filter { $0 != Location.invalidLocation }
-            .assign(to: \.userLocation, on: self)
+            .assign(to: \.currentMapCoordinate, on: self)
             .store(in: &disposeBag)
     }
 
