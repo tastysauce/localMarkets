@@ -31,9 +31,18 @@ struct MapView: UIViewRepresentable {
 
 }
 
+class MapViewCoordinator: NSObject, MKMapViewDelegate {
+
+    @Published var mapCenterCoordinate: Location = .invalidLocation
+
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        mapCenterCoordinate = Location(coordinate: mapView.centerCoordinate)
+    }
+
+}
+
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
-            .environmentObject(MapViewModel(locationProvider: LocationProvider()))
     }
 }

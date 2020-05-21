@@ -12,9 +12,10 @@ import Combine
 class MapViewModel: ObservableObject {
 
     @Published public var userLocation: Location = .invalidLocation
+    @Published public var mapCenterCoordinate: Location = .invalidLocation
 
     private let locationProvider: LocationProvider
-    private let updateLocationPublisher = PassthroughSubject<Void, Never>()
+    private let centerOnUserPublisher = PassthroughSubject<Void, Never>()
     private var disposeBag: Set<AnyCancellable> = []
 
     public init(locationProvider: LocationProvider) {
@@ -23,19 +24,22 @@ class MapViewModel: ObservableObject {
         // Get and store initial location once we receive a valid one
         locationProvider.$location
             .first { $0 != Location.invalidLocation }
-            .assign(to: \.userLocation, on: self)
+            .sink(receiveValue: { location in
+                self.userLocation = location
+                self.mapCenterCoordinate = location
+            })
             .store(in: &disposeBag)
 
         // Vends the latest user location when a button is tapped
-        updateLocationPublisher
+        centerOnUserPublisher
             .withLatestFrom(locationProvider.$location)
             .filter { $0 != Location.invalidLocation }
             .assign(to: \.userLocation, on: self)
             .store(in: &disposeBag)
     }
 
-    public func updateUserLocation() {
-        updateLocationPublisher.send(())
+    public func centerOnUser() {
+        centerOnUserPublisher.send(())
     }
 
 }

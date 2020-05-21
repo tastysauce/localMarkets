@@ -12,12 +12,7 @@ struct Home: View {
 
     @EnvironmentObject private var locationProvider: LocationProvider
     @EnvironmentObject private var nearbyMarkets: NearbyMarkets
-
-    private let mapViewModel: MapViewModel
-
-    init(mapViewModel: MapViewModel) {
-        self.mapViewModel = mapViewModel
-    }
+    @EnvironmentObject private var mapViewModel: MapViewModel
 
     var body: some View {
         ZStack {
@@ -26,9 +21,14 @@ struct Home: View {
 
             VStack {
                 Button(action: {
-                    self.nearbyMarkets.getNearbyMarkets()
+                    self.nearbyMarkets.getNearbyMarkets(for: self.mapViewModel.mapCenterCoordinate)
                 }) {
                     Text("Get nearby markets")
+                }
+                Button(action: {
+                    self.mapViewModel.centerOnUser()
+                }) {
+                    Text("Center map on me")
                 }
 
                 if nearbyMarkets.markets.isEmpty {
@@ -47,8 +47,9 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(mapViewModel: MapViewModel(locationProvider: LocationProvider()))
+        Home()
             .environmentObject(LocationProvider())
             .environmentObject(NearbyMarkets.mockNearbyMarkets)
+            .environmentObject(MapViewModel(locationProvider: LocationProvider()))
     }
 }

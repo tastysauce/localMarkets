@@ -14,18 +14,13 @@ class NearbyMarkets: ObservableObject {
     @Published var markets: [Market] = []
 
     private let marketsAPIClient: MarketsAPIClient
-    private let locationProvider: LocationProvider
     private var disposeBag: Set<AnyCancellable> = []
 
-    init(
-        marketsAPIClient: MarketsAPIClient,
-        locationProvider: LocationProvider) {
+    init(marketsAPIClient: MarketsAPIClient) {
         self.marketsAPIClient = marketsAPIClient
-        self.locationProvider = locationProvider
     }
 
-    public func getNearbyMarkets() {
-        let currentLocation = locationProvider.location
+    public func getNearbyMarkets(for currentLocation: Location) {
         marketsAPIClient.requestMarkets(nearby: currentLocation)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
@@ -36,7 +31,7 @@ class NearbyMarkets: ObservableObject {
     }
 
     static var mockNearbyMarkets: NearbyMarkets {
-        return NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()), locationProvider: LocationProvider())
+        return NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
     }
 
 }
