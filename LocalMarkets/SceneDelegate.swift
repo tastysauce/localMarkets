@@ -27,8 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
 
         let nearbyMarkets = NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()), locationProvider: locationProvider)
+        let mapViewModel = MapViewModel(locationProvider: locationProvider)
 
-        let contentView = Home()
+        let contentView = Home(mapViewModel: mapViewModel)
             .environment(\.managedObjectContext, context)
             .environmentObject(locationProvider)
             .environmentObject(nearbyMarkets)

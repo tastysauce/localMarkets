@@ -13,10 +13,16 @@ struct Home: View {
     @EnvironmentObject private var locationProvider: LocationProvider
     @EnvironmentObject private var nearbyMarkets: NearbyMarkets
 
+    private let mapViewModel: MapViewModel
+
+    init(mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+    }
+
     var body: some View {
         ZStack {
             MapView()
-                .environmentObject(locationProvider)
+                .environmentObject(mapViewModel)
 
             VStack {
                 Button(action: {
@@ -41,7 +47,7 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home(mapViewModel: MapViewModel(locationProvider: LocationProvider()))
             .environmentObject(LocationProvider())
             .environmentObject(NearbyMarkets.mockNearbyMarkets)
     }

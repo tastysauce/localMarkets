@@ -27,6 +27,7 @@ class NearbyMarkets: ObservableObject {
     public func getNearbyMarkets() {
         let currentLocation = locationProvider.location
         marketsAPIClient.requestMarkets(nearby: currentLocation)
+            .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: DispatchQueue.main)
             .map(\.markets)
             .replaceError(with: [])

@@ -12,20 +12,20 @@ import Combine
 
 struct MapView: UIViewRepresentable {
 
-    @EnvironmentObject var locationProvider: LocationProvider
+    @EnvironmentObject var mapViewModel: MapViewModel
 
     func makeUIView(context: Context) -> MKMapView {
         MKMapView(frame: .zero)
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-//        guard locationProvider.location.coordinate != kCLLocationCoordinate2DInvalid else {
-//            print("Invalid")
-//            return
-//        }
-        
+        guard mapViewModel.userLocation.coordinate != kCLLocationCoordinate2DInvalid else {
+            print("Invalid")
+            return
+        }
+
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: locationProvider.location.coordinate, span: span)
+        let region = MKCoordinateRegion(center: mapViewModel.userLocation.coordinate, span: span)
         uiView.setRegion(region, animated: true)
     }
 
@@ -34,6 +34,6 @@ struct MapView: UIViewRepresentable {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
-            .environmentObject(LocationProvider())
+            .environmentObject(MapViewModel(locationProvider: LocationProvider()))
     }
 }
