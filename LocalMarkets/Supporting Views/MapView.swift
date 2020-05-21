@@ -19,10 +19,11 @@ struct MapView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        guard locationProvider.location.coordinate != kCLLocationCoordinate2DInvalid else {
-            print("Invalid")
-            return
-        }
+//        guard locationProvider.location.coordinate != kCLLocationCoordinate2DInvalid else {
+//            print("Invalid")
+//            return
+//        }
+        
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: locationProvider.location.coordinate, span: span)
         uiView.setRegion(region, animated: true)

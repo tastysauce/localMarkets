@@ -23,6 +23,8 @@
 		4E7997D42472016E001C8493 /* MarketsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D32472016E001C8493 /* MarketsAPIClient.swift */; };
 		4E7997D724720272001C8493 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D624720272001C8493 /* Market.swift */; };
 		4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D82472038A001C8493 /* NearbyMarkets.swift */; };
+		4E7F12242476059B003D5893 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12232476059B003D5893 /* MapViewModel.swift */; };
+		4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		4E7997D32472016E001C8493 /* MarketsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsAPIClient.swift; sourceTree = "<group>"; };
 		4E7997D624720272001C8493 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		4E7997D82472038A001C8493 /* NearbyMarkets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMarkets.swift; sourceTree = "<group>"; };
+		4E7F12232476059B003D5893 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combine+WithLatestFrom.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				4E7997D02471BED1001C8493 /* Networking */,
 				4E7997D52472021D001C8493 /* Models */,
 				4E7997CA24709DFC001C8493 /* Location */,
+				4E7F122524760D73003D5893 /* Nutty Extensions */,
 				4E79979924709A5B001C8493 /* Assets.xcassets */,
 				4E79979E24709A5B001C8493 /* LaunchScreen.storyboard */,
 				4E7997A124709A5B001C8493 /* Info.plist */,
@@ -197,8 +202,17 @@
 			children = (
 				4E7997D624720272001C8493 /* Market.swift */,
 				4E7997D82472038A001C8493 /* NearbyMarkets.swift */,
+				4E7F12232476059B003D5893 /* MapViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4E7F122524760D73003D5893 /* Nutty Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */,
+			);
+			path = "Nutty Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +352,9 @@
 				4E79979624709A5A001C8493 /* LocalMarkets.xcdatamodeld in Sources */,
 				4E79979124709A5A001C8493 /* AppDelegate.swift in Sources */,
 				4E7997CC24709E0D001C8493 /* LocationProvider.swift in Sources */,
+				4E7F12242476059B003D5893 /* MapViewModel.swift in Sources */,
 				4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */,
+				4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */,
 				4E7997C424709A9E001C8493 /* Home.swift in Sources */,
 				4E79979324709A5A001C8493 /* SceneDelegate.swift in Sources */,
 				4E7997D724720272001C8493 /* Market.swift in Sources */,
