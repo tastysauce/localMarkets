@@ -31,7 +31,7 @@ let marketsPrefilledData = """
 }
 """.data(using: .utf8)!
 
-let details = """
+let detailsPrefilledData = """
 {
     "marketdetails": {
         "Address": "El Camino Real and O'Neill St., Belmont, California, 94002",
@@ -40,7 +40,7 @@ let details = """
         "Schedule": "01/01/2015 to 12/31/2015 Sun: 9:00 AM-1:00 PM;<br> <br> <br> "
     }
 }
-"""
+""".data(using: .utf8)!
 
 //MARK: Location
 
@@ -334,7 +334,10 @@ class TestClient {
 
 }
 
-let testClient = TestClient()
-testClient.getMarkets(with: marketsPrefilledData)
+//let testClient = TestClient()
+//testClient.getMarkets(with: marketsPrefilledData)
+
+
+let marketDetails = try! JSONDecoder().decode(NearbyMarketDetailsResponse.self, from: detailsPrefilledData).marketDetails
 
 
