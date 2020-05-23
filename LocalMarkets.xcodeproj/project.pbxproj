@@ -16,15 +16,15 @@
 		4E7997AB24709A5B001C8493 /* LocalMarketsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997AA24709A5B001C8493 /* LocalMarketsTests.swift */; };
 		4E7997B624709A5B001C8493 /* LocalMarketsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997B524709A5B001C8493 /* LocalMarketsUITests.swift */; };
 		4E7997C424709A9E001C8493 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997C324709A9E001C8493 /* Home.swift */; };
-		4E7997C924709B6B001C8493 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997C824709B6B001C8493 /* MapView.swift */; };
 		4E7997CC24709E0D001C8493 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997CB24709E0D001C8493 /* LocationProvider.swift */; };
 		4E7997CF2470A3F2001C8493 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E7997CE2470A3F2001C8493 /* MapKit.framework */; };
 		4E7997D22471BEFA001C8493 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D12471BEFA001C8493 /* APIClient.swift */; };
 		4E7997D42472016E001C8493 /* MarketsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D32472016E001C8493 /* MarketsAPIClient.swift */; };
-		4E7997D724720272001C8493 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D624720272001C8493 /* Market.swift */; };
-		4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7997D82472038A001C8493 /* NearbyMarkets.swift */; };
-		4E7F12242476059B003D5893 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12232476059B003D5893 /* MapViewModel.swift */; };
 		4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */; };
+		4E7F122C2479A55F003D5893 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122A2479A55F003D5893 /* MapView.swift */; };
+		4E7F122D2479A55F003D5893 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122B2479A55F003D5893 /* MapViewModel.swift */; };
+		4E7F12302479A569003D5893 /* NearbyMarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122E2479A569003D5893 /* NearbyMarkets.swift */; };
+		4E7F12312479A569003D5893 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122F2479A569003D5893 /* Market.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,15 +60,15 @@
 		4E7997B524709A5B001C8493 /* LocalMarketsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMarketsUITests.swift; sourceTree = "<group>"; };
 		4E7997B724709A5B001C8493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E7997C324709A9E001C8493 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		4E7997C824709B6B001C8493 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		4E7997CB24709E0D001C8493 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		4E7997CE2470A3F2001C8493 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4E7997D12471BEFA001C8493 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4E7997D32472016E001C8493 /* MarketsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsAPIClient.swift; sourceTree = "<group>"; };
-		4E7997D624720272001C8493 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
-		4E7997D82472038A001C8493 /* NearbyMarkets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyMarkets.swift; sourceTree = "<group>"; };
-		4E7F12232476059B003D5893 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Combine+WithLatestFrom.swift"; sourceTree = "<group>"; };
+		4E7F122A2479A55F003D5893 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		4E7F122B2479A55F003D5893 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		4E7F122E2479A569003D5893 /* NearbyMarkets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMarkets.swift; sourceTree = "<group>"; };
+		4E7F122F2479A569003D5893 /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,9 @@
 			children = (
 				4E79979024709A5A001C8493 /* AppDelegate.swift */,
 				4E79979224709A5A001C8493 /* SceneDelegate.swift */,
+				4E7F12292479A52A003D5893 /* Markets */,
+				4E7F12282479A524003D5893 /* Map */,
 				4E7997C324709A9E001C8493 /* Home.swift */,
-				4E7997C724709B5A001C8493 /* Supporting Views */,
 				4E7997D02471BED1001C8493 /* Networking */,
 				4E7997D52472021D001C8493 /* Models */,
 				4E7997CA24709DFC001C8493 /* Location */,
@@ -164,14 +165,6 @@
 			path = LocalMarketsUITests;
 			sourceTree = "<group>";
 		};
-		4E7997C724709B5A001C8493 /* Supporting Views */ = {
-			isa = PBXGroup;
-			children = (
-				4E7997C824709B6B001C8493 /* MapView.swift */,
-			);
-			path = "Supporting Views";
-			sourceTree = "<group>";
-		};
 		4E7997CA24709DFC001C8493 /* Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,9 +193,6 @@
 		4E7997D52472021D001C8493 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4E7997D624720272001C8493 /* Market.swift */,
-				4E7997D82472038A001C8493 /* NearbyMarkets.swift */,
-				4E7F12232476059B003D5893 /* MapViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -213,6 +203,24 @@
 				4E7F122624760D84003D5893 /* Combine+WithLatestFrom.swift */,
 			);
 			path = "Nutty Extensions";
+			sourceTree = "<group>";
+		};
+		4E7F12282479A524003D5893 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4E7F122A2479A55F003D5893 /* MapView.swift */,
+				4E7F122B2479A55F003D5893 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		4E7F12292479A52A003D5893 /* Markets */ = {
+			isa = PBXGroup;
+			children = (
+				4E7F122F2479A569003D5893 /* Market.swift */,
+				4E7F122E2479A569003D5893 /* NearbyMarkets.swift */,
+			);
+			path = Markets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,18 +354,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E7997C924709B6B001C8493 /* MapView.swift in Sources */,
+				4E7F12302479A569003D5893 /* NearbyMarkets.swift in Sources */,
 				4E7997D42472016E001C8493 /* MarketsAPIClient.swift in Sources */,
+				4E7F122D2479A55F003D5893 /* MapViewModel.swift in Sources */,
 				4E7997D22471BEFA001C8493 /* APIClient.swift in Sources */,
 				4E79979624709A5A001C8493 /* LocalMarkets.xcdatamodeld in Sources */,
 				4E79979124709A5A001C8493 /* AppDelegate.swift in Sources */,
 				4E7997CC24709E0D001C8493 /* LocationProvider.swift in Sources */,
-				4E7F12242476059B003D5893 /* MapViewModel.swift in Sources */,
-				4E7997D92472038A001C8493 /* NearbyMarkets.swift in Sources */,
 				4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */,
 				4E7997C424709A9E001C8493 /* Home.swift in Sources */,
+				4E7F122C2479A55F003D5893 /* MapView.swift in Sources */,
 				4E79979324709A5A001C8493 /* SceneDelegate.swift in Sources */,
-				4E7997D724720272001C8493 /* Market.swift in Sources */,
+				4E7F12312479A569003D5893 /* Market.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
