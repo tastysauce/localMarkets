@@ -104,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4E79978F24709A5A001C8493 /* LocalMarkets */,
+				4E7F12342479BA77003D5893 /* playground.playground */,
 				4E7997A924709A5B001C8493 /* LocalMarketsTests */,
 				4E7997B424709A5B001C8493 /* LocalMarketsUITests */,
 				4E79978E24709A5A001C8493 /* Products */,
@@ -124,7 +125,6 @@
 		4E79978F24709A5A001C8493 /* LocalMarkets */ = {
 			isa = PBXGroup;
 			children = (
-				4E7F12342479BA77003D5893 /* playground.playground */,
 				4E79979024709A5A001C8493 /* AppDelegate.swift */,
 				4E79979224709A5A001C8493 /* SceneDelegate.swift */,
 				4E7F12292479A52A003D5893 /* Markets */,
