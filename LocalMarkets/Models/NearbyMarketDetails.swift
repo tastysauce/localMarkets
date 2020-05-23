@@ -19,7 +19,6 @@ struct NearbyMarketDetailsResponse: Codable {
 
 }
 
-
 struct NearbyMarketDetails: Codable {
 
     var address: String

@@ -16,6 +16,7 @@ public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Boo
 }
 
 struct Location: Equatable {
+
     var latitude: Double
     var longitude: Double
 
@@ -40,4 +41,5 @@ struct Location: Equatable {
     public static func == (lhs: Location, rhs: Location) -> Bool {
         return lhs.coordinate == rhs.coordinate && lhs.coordinate == rhs.coordinate
     }
+    
 }

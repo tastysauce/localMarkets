@@ -15,7 +15,7 @@ struct NearbyMarketsResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case markets = "results"
     }
-
+    
 }
 
 struct NearbyMarket: Codable, Identifiable {
@@ -47,4 +47,5 @@ struct NearbyMarket: Codable, Identifiable {
         marketName = components.suffix(from: 1).joined(separator: " ")
         distance = componentDistance
     }
+    
 }
