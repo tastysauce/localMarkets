@@ -31,7 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let contentView = Home()
             .environment(\.managedObjectContext, context)
-            .environmentObject(locationProvider)
             .environmentObject(nearbyMarkets)
             .environmentObject(mapViewModel)
 

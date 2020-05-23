@@ -10,7 +10,6 @@ import SwiftUI
 
 struct Home: View {
 
-    @EnvironmentObject private var locationProvider: LocationProvider
     @EnvironmentObject private var nearbyMarkets: NearbyMarkets
     @EnvironmentObject private var mapViewModel: MapViewModel
 
@@ -48,7 +47,6 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
-            .environmentObject(LocationProvider())
             .environmentObject(NearbyMarkets.mockNearbyMarkets)
             .environmentObject(MapViewModel(locationProvider: LocationProvider()))
     }
