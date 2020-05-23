@@ -25,6 +25,7 @@
 		4E7F122D2479A55F003D5893 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122B2479A55F003D5893 /* MapViewModel.swift */; };
 		4E7F12302479A569003D5893 /* NearbyMarkets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122E2479A569003D5893 /* NearbyMarkets.swift */; };
 		4E7F12312479A569003D5893 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F122F2479A569003D5893 /* Market.swift */; };
+		4E7F12332479A78E003D5893 /* MarketDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12322479A78E003D5893 /* MarketDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		4E7F122B2479A55F003D5893 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		4E7F122E2479A569003D5893 /* NearbyMarkets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyMarkets.swift; sourceTree = "<group>"; };
 		4E7F122F2479A569003D5893 /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		4E7F12322479A78E003D5893 /* MarketDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetails.swift; sourceTree = "<group>"; };
+		4E7F12342479BA77003D5893 /* playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +124,7 @@
 		4E79978F24709A5A001C8493 /* LocalMarkets */ = {
 			isa = PBXGroup;
 			children = (
+				4E7F12342479BA77003D5893 /* playground.playground */,
 				4E79979024709A5A001C8493 /* AppDelegate.swift */,
 				4E79979224709A5A001C8493 /* SceneDelegate.swift */,
 				4E7F12292479A52A003D5893 /* Markets */,
@@ -218,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				4E7F122F2479A569003D5893 /* Market.swift */,
+				4E7F12322479A78E003D5893 /* MarketDetails.swift */,
 				4E7F122E2479A569003D5893 /* NearbyMarkets.swift */,
 			);
 			path = Markets;
@@ -360,6 +365,7 @@
 				4E7997D22471BEFA001C8493 /* APIClient.swift in Sources */,
 				4E79979624709A5A001C8493 /* LocalMarkets.xcdatamodeld in Sources */,
 				4E79979124709A5A001C8493 /* AppDelegate.swift in Sources */,
+				4E7F12332479A78E003D5893 /* MarketDetails.swift in Sources */,
 				4E7997CC24709E0D001C8493 /* LocationProvider.swift in Sources */,
 				4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */,
 				4E7997C424709A9E001C8493 /* Home.swift in Sources */,
