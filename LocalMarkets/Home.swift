@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Home: View {
 
-    @EnvironmentObject private var nearbyMarkets: NearbyMarkets
+    @EnvironmentObject private var localMarkets: LocalMarketsViewModel
     @EnvironmentObject private var mapViewModel: MapViewModel
 
     var body: some View {
@@ -20,7 +20,7 @@ struct Home: View {
 
             VStack {
                 Button(action: {
-                    self.nearbyMarkets.getNearbyMarkets(for: self.mapViewModel.currentMapCoordinate)
+                    self.localMarkets.getNearbyMarkets(for: self.mapViewModel.currentMapCoordinate)
                 }) {
                     Text("Get nearby markets")
                 }
@@ -30,11 +30,11 @@ struct Home: View {
                     Text("Center map on me")
                 }
 
-                if nearbyMarkets.markets.isEmpty {
+                if localMarkets.markets.isEmpty {
                     Text("lol")
                 } else {
                     List {
-                        ForEach(nearbyMarkets.markets, id: \.id) { market in
+                        ForEach(localMarkets.markets, id: \.id) { market in
                             Text("name: \(market.marketName)")
                         }
                     }
@@ -47,7 +47,7 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
-            .environmentObject(NearbyMarkets.mockNearbyMarkets)
+            .environmentObject(LocalMarketsViewModel.mockLocalMarkets)
             .environmentObject(MapViewModel(locationProvider: LocationProvider()))
     }
 }

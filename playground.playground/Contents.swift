@@ -31,6 +31,17 @@ let marketsPrefilledData = """
 }
 """.data(using: .utf8)!
 
+let details = """
+{
+    "marketdetails": {
+        "Address": "El Camino Real and O'Neill St., Belmont, California, 94002",
+        "GoogleLink": "http://maps.google.com/?q=37.518818%2C%20-122.2736%20(%22Belmont+Certified+Farmers'+Market%22)",
+        "Products": "Baked goods; Cut flowers; Eggs; Fish and/or seafood; Fresh fruit and vegetables; Fresh and/or dried herbs; Honey; Meat; Plants in containers",
+        "Schedule": "01/01/2015 to 12/31/2015 Sun: 9:00 AM-1:00 PM;<br> <br> <br> "
+    }
+}
+"""
+
 //MARK: Location
 
 struct Location {
@@ -103,7 +114,7 @@ struct NearbyMarketDetailsResponse: Codable {
     var marketDetails: NearbyMarketDetails
 
     enum CodingKeys: String, CodingKey {
-        case marketDetails = "marketDetails"
+        case marketDetails = "marketdetails"
     }
 
 }
@@ -116,7 +127,7 @@ struct NearbyMarketDetails: Codable {
     var schedule: String // TODO: This will need parsing
     // Calculated var lat/lon
 
-    enum CodingKEys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case address = "Address"
         case googleMapsLink = "GoogleLink"
         case products = "Products"
@@ -127,10 +138,30 @@ struct NearbyMarketDetails: Codable {
 
 struct Market {
 
+    // from NearbyMarket
+    var id: String
+    var marketName: String
+    var distance: Double
+
+    // from NearbyMarketDetails
     var address: String
     var googleMapsLink: URL
     var products: String // TODO: Make an enum for the products!
     var schedule: String // TODO: This will need parsing
+
+    var location: Location = .invalidLocation
+
+    init(
+        nearbyMarket: NearbyMarket,
+        nearbyMarketDetails: NearbyMarketDetails) {
+        self.id = nearbyMarket.id
+        self.marketName = nearbyMarket.marketName
+        self.distance = nearbyMarket.distance
+        self.address = nearbyMarketDetails.address
+        self.googleMapsLink = nearbyMarketDetails.googleMapsLink
+        self.products = nearbyMarketDetails.products
+        self.schedule = nearbyMarketDetails.schedule
+    }
 
 }
 
@@ -177,7 +208,7 @@ struct MarketsAPIClient {
     enum Path: String {
         case locationSearch = "locSearch"
         case zipSerach = "zipSearch"
-        case marketDetails = "mktDetails"
+        case marketDetail = "mktDetail"
     }
 
     enum QueryParams: String {
@@ -214,7 +245,7 @@ struct MarketsAPIClient {
     }
 
     func requestMarketDetails(for market: NearbyMarket) -> AnyPublisher<NearbyMarketDetailsResponse, Error> {
-        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.marketDetails.rawValue), resolvingAgainstBaseURL: true) else {
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.marketDetail.rawValue), resolvingAgainstBaseURL: true) else {
             return Fail(outputType: NearbyMarketDetailsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
         }
 
@@ -232,12 +263,6 @@ struct MarketsAPIClient {
             .eraseToAnyPublisher()
     }
 
-    func requestMarketDetails(for markets: [NearbyMarket]) /*-> AnyPublisher<MarketDetailsResponse, Error>*/ {
-
-        let marketDetailsPublishers = markets.map { requestMarketDetails(for: $0) }
-
-    }
-
 }
 
 class TestClient {
@@ -251,17 +276,31 @@ class TestClient {
 
     func getMarkets(with prefilledData: Data?) {
 
-        $nearbyMarkets
-            .sink { markets in
-                for market in markets {
-                    print("id: \(market.id) name: \(market.marketName) distance: \(market.distance)")
-                }
-        }
-        .store(in: &disposeBag)
+        $markets
+            .sink {
+                print("finalArray: " + "\($0.map { $0.googleMapsLink.absoluteString + $0.id })")
+            }
+            .store(in: &disposeBag)
 
         if let prefilledData = prefilledData {
             let marketsResponse = try! JSONDecoder().decode(NearbyMarketsResponse.self, from: prefilledData)
             nearbyMarkets = marketsResponse.markets
+
+            Just(marketsResponse).eraseToAnyPublisher()
+                .map(\.markets)
+                .setFailureType(to: Error.self)
+                .flatMap { (value: [NearbyMarket]) -> AnyPublisher<[Market], Error> in
+                    return self.getAllMarketDetails(nearbyMarkets: value)
+            }
+            .sink(receiveCompletion: { _ in
+                print("completion")
+            }) { marketsResponse in
+                self.markets = marketsResponse
+            }
+            .store(in: &disposeBag)
+
+
+
         } else {
             marketsAPIClient.requestMarkets(nearby: Location(latitude: 37.509280, longitude: -122.303370))
                 .map(\.markets)
@@ -273,6 +312,24 @@ class TestClient {
             .store(in: &disposeBag)
         }
 
+    }
+
+    func getAllMarketDetails(nearbyMarkets: [NearbyMarket]) -> AnyPublisher<[Market], Error> {
+        let arrayOfPublishers = nearbyMarkets.map { getMarketDetails(nearbyMarket: $0) }
+        let sequenceOfPublishers = Publishers.Sequence<[AnyPublisher<Market, Error>], Error>(sequence: arrayOfPublishers)
+        let marketsPublisher = sequenceOfPublishers.flatMap { $0 }.collect().eraseToAnyPublisher()
+        return marketsPublisher
+    }
+
+    func getMarketDetails(nearbyMarket: NearbyMarket) -> AnyPublisher<Market, Error> {
+
+        marketsAPIClient.requestMarketDetails(for: nearbyMarket)
+            .map(\.marketDetails)
+            .map { print("\($0)")
+                return $0
+        }
+            .map { Market(nearbyMarket: nearbyMarket, nearbyMarketDetails: $0) }
+            .eraseToAnyPublisher()
     }
 
 }

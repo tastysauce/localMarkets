@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
 
-        let nearbyMarkets = NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
+        let nearbyMarkets = LocalMarketsViewModel(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
         let mapViewModel = MapViewModel(locationProvider: locationProvider)
 
         let contentView = Home()

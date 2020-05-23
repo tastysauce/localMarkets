@@ -8,7 +8,17 @@
 
 import Foundation
 
-struct Market: Codable, Identifiable {
+struct NearbyMarketsResponse: Codable {
+
+    var markets: [NearbyMarket]
+
+    enum CodingKeys: String, CodingKey {
+        case markets = "results"
+    }
+
+}
+
+struct NearbyMarket: Codable, Identifiable {
 
     enum ParsingError: Error {
         case invalidJSON

@@ -9,9 +9,9 @@
 import Foundation
 import Combine
 
-class NearbyMarkets: ObservableObject {
+class LocalMarketsViewModel: ObservableObject {
 
-    @Published var markets: [Market] = []
+    @Published var markets: [NearbyMarket] = []
 
     private let marketsAPIClient: MarketsAPIClient
     private var disposeBag: Set<AnyCancellable> = []
@@ -30,8 +30,8 @@ class NearbyMarkets: ObservableObject {
             .store(in: &disposeBag)
     }
 
-    static var mockNearbyMarkets: NearbyMarkets {
-        return NearbyMarkets(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
+    static var mockLocalMarkets: LocalMarketsViewModel {
+        return LocalMarketsViewModel(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
     }
 
 }

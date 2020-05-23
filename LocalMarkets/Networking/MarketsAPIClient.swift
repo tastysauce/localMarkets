@@ -9,14 +9,6 @@
 import Foundation
 import Combine
 
-struct MarketsResponse: Codable {
-    var markets: [Market]
-
-    enum CodingKeys: String, CodingKey {
-        case markets = "results"
-    }
-}
-
 struct MarketsAPIClient {
 
     enum MarketsAPIClientError: Error {
@@ -24,12 +16,15 @@ struct MarketsAPIClient {
     }
 
     enum Path: String {
-        case nearbyMarkets = "locSearch"
+        case locationSearch = "locSearch"
+        case zipSerach = "zipSearch"
+        case marketDetail = "mktDetail"
     }
 
     enum QueryParams: String {
         case latitude = "lat"
         case longitude = "lng"
+        case marketID = "id"
     }
 
     private let baseURL = URL(string: "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/")!
@@ -39,9 +34,9 @@ struct MarketsAPIClient {
         self.apiClient = apiClient
     }
 
-    func requestMarkets(nearby location: Location) -> AnyPublisher<MarketsResponse, Error> {
-        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.nearbyMarkets.rawValue), resolvingAgainstBaseURL: true) else {
-            return Fail(outputType: MarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+    func requestMarkets(nearby location: Location) -> AnyPublisher<NearbyMarketsResponse, Error> {
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.locationSearch.rawValue), resolvingAgainstBaseURL: true) else {
+            return Fail(outputType: NearbyMarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
         }
 
         components.queryItems = [
@@ -50,7 +45,26 @@ struct MarketsAPIClient {
         ]
 
         guard let url = components.url else {
-            return Fail(outputType: MarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+            return Fail(outputType: NearbyMarketsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+        }
+
+        let request = URLRequest(url: url)
+
+        return apiClient.run(request)
+            .eraseToAnyPublisher()
+    }
+
+    func requestMarketDetails(for market: NearbyMarket) -> AnyPublisher<NearbyMarketDetailsResponse, Error> {
+        guard var components = URLComponents(url: baseURL.appendingPathComponent(Path.marketDetail.rawValue), resolvingAgainstBaseURL: true) else {
+            return Fail(outputType: NearbyMarketDetailsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
+        }
+
+        components.queryItems = [
+            URLQueryItem(name: QueryParams.marketID.rawValue, value: market.id),
+        ]
+
+        guard let url = components.url else {
+            return Fail(outputType: NearbyMarketDetailsResponse.self, failure: MarketsAPIClientError.badURLComponents).eraseToAnyPublisher()
         }
 
         let request = URLRequest(url: url)
@@ -60,3 +74,4 @@ struct MarketsAPIClient {
     }
 
 }
+
