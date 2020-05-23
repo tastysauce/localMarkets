@@ -20,8 +20,7 @@ struct Market {
     var googleMapsLink: URL
     var products: String // TODO: Make an enum for the products!
     var schedule: String // TODO: This will need parsing
-
-    var location: Location = .invalidLocation
+    var location: Location
 
     init(
         nearbyMarket: NearbyMarket,
@@ -33,6 +32,27 @@ struct Market {
         self.googleMapsLink = nearbyMarketDetails.googleMapsLink
         self.products = nearbyMarketDetails.products
         self.schedule = nearbyMarketDetails.schedule
+        self.location = Market.parseLocation(from: googleMapsLink)
+    }
+
+    private static func parseLocation(from url: URL) -> Location {
+        guard let urlComponents = URLComponents(string: url.absoluteString),
+            let firstQueryValue = urlComponents.queryItems?.first?.value else {
+                return .invalidLocation
+        }
+
+        let stringComponents = firstQueryValue.components(separatedBy: " ")
+        guard stringComponents.count >= 2 else {
+            return .invalidLocation
+        }
+
+        guard let cleanLatitude = stringComponents.first?.replacingOccurrences(of: ",", with: ""),
+            let latitude = Double(cleanLatitude),
+            let longitude = Double(stringComponents[1]) else {
+                return .invalidLocation
+        }
+
+        return Location(latitude: latitude, longitude: longitude)
     }
 
 }

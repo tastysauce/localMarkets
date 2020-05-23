@@ -161,6 +161,27 @@ struct Market {
         self.googleMapsLink = nearbyMarketDetails.googleMapsLink
         self.products = nearbyMarketDetails.products
         self.schedule = nearbyMarketDetails.schedule
+        self.location = Market.parseLocation(from: googleMapsLink)
+    }
+
+    private static func parseLocation(from url: URL) -> Location {
+        guard let urlComponents = URLComponents(string: url.absoluteString),
+            let firstQueryValue = urlComponents.queryItems?.first?.value else {
+                return .invalidLocation
+        }
+
+        let stringComponents = firstQueryValue.components(separatedBy: " ")
+        guard stringComponents.count >= 2 else {
+            return .invalidLocation
+        }
+
+        guard let cleanLatitude = stringComponents.first?.replacingOccurrences(of: ",", with: ""),
+            let latitude = Double(cleanLatitude),
+            let longitude = Double(stringComponents[1]) else {
+                return .invalidLocation
+        }
+
+        return Location(latitude: latitude, longitude: longitude)
     }
 
 }
@@ -337,7 +358,12 @@ class TestClient {
 //let testClient = TestClient()
 //testClient.getMarkets(with: marketsPrefilledData)
 
-
+let markets = try! JSONDecoder().decode(NearbyMarketsResponse.self, from: marketsPrefilledData).markets
 let marketDetails = try! JSONDecoder().decode(NearbyMarketDetailsResponse.self, from: detailsPrefilledData).marketDetails
 
+let firstMarket = markets.first!
 
+let market = Market(nearbyMarket: firstMarket, nearbyMarketDetails: marketDetails)
+
+
+print("\(market.location)")
