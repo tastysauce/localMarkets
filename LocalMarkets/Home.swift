@@ -35,7 +35,7 @@ struct Home: View {
                 } else {
                     List {
                         ForEach(localMarkets.markets, id: \.id) { market in
-                            Text("name: \(market.marketName)")
+                            Text("name: \(market.name)")
                         }
                     }
                 }

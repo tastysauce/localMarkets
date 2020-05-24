@@ -26,25 +26,25 @@ struct NearbyMarket: Codable, Identifiable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case marketName = "marketname"
+        case name = "marketname"
     }
 
     var id: String
-    var marketName: String
+    var name: String
     var distance: Double
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(String.self, forKey: .id)
 
-        let distanceAndName = try values.decode(String.self, forKey: .marketName)
+        let distanceAndName = try values.decode(String.self, forKey: .name)
         let components = distanceAndName.components(separatedBy: " ")
 
         guard components.count > 1, let componentDistance = Double(components[0]) else {
             throw ParsingError.invalidJSON
         }
 
-        marketName = components.suffix(from: 1).joined(separator: " ")
+        name = components.suffix(from: 1).joined(separator: " ")
         distance = componentDistance
     }
     

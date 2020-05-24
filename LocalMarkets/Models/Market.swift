@@ -12,7 +12,7 @@ struct Market {
 
     // from NearbyMarket
     var id: String
-    var marketName: String
+    var name: String
     var distance: Double
 
     // from NearbyMarketDetails
@@ -26,7 +26,7 @@ struct Market {
         nearbyMarket: NearbyMarket,
         nearbyMarketDetails: NearbyMarketDetails) {
         self.id = nearbyMarket.id
-        self.marketName = nearbyMarket.marketName
+        self.name = nearbyMarket.name
         self.distance = nearbyMarket.distance
         self.address = nearbyMarketDetails.address
         self.googleMapsLink = nearbyMarketDetails.googleMapsLink

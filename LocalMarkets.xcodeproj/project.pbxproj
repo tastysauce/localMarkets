@@ -29,6 +29,7 @@
 		4E7F123E2479E732003D5893 /* LocalMarketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F123D2479E732003D5893 /* LocalMarketsViewModel.swift */; };
 		4E7F12412479E754003D5893 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12402479E754003D5893 /* LocationProvider.swift */; };
 		4E7F12432479E8A2003D5893 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12422479E8A2003D5893 /* Market.swift */; };
+		4E7F12452479F2DF003D5893 /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		4E7F123D2479E732003D5893 /* LocalMarketsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalMarketsViewModel.swift; sourceTree = "<group>"; };
 		4E7F12402479E754003D5893 /* LocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		4E7F12422479E8A2003D5893 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				4E7F12392479E6D6003D5893 /* NearbyMarketDetails.swift */,
 				4E7F12422479E8A2003D5893 /* Market.swift */,
 				4E7F12372479E4E9003D5893 /* Location.swift */,
+				4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */,
 				4E7F12412479E754003D5893 /* LocationProvider.swift in Sources */,
 				4E7997C424709A9E001C8493 /* Home.swift in Sources */,
+				4E7F12452479F2DF003D5893 /* MarketAnnotation.swift in Sources */,
 				4E7F12432479E8A2003D5893 /* Market.swift in Sources */,
 				4E7F123E2479E732003D5893 /* LocalMarketsViewModel.swift in Sources */,
 				4E7F122C2479A55F003D5893 /* MapView.swift in Sources */,
