@@ -22,7 +22,6 @@ class LocalMarketsViewModel: ObservableObject {
 
         $markets
             .map { $0.map { MarketAnnotation(market: $0) } }
-            .receive(on: DispatchQueue.main)
             .assign(to: \.marketAnnotations, on: self)
             .store(in: &disposeBag)
     }
@@ -30,9 +29,9 @@ class LocalMarketsViewModel: ObservableObject {
     public func getNearbyMarkets(for currentLocation: Location) {
         marketsAPIClient.requestMarkets(nearby: currentLocation)
             .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
             .map(\.markets)
             .flatMap { self.getDetailsForAll(nearbyMarkets: $0) }
+            .receive(on: DispatchQueue.main)
             .replaceError(with: [])
             .assign(to: \.markets, on: self)
             .store(in: &disposeBag)

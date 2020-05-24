@@ -51,7 +51,6 @@ struct MarketsAPIClient {
         let request = URLRequest(url: url)
 
         return apiClient.run(request)
-            .eraseToAnyPublisher()
     }
 
     func requestMarketDetails(for market: NearbyMarket) -> AnyPublisher<NearbyMarketDetailsResponse, Error> {
@@ -70,7 +69,6 @@ struct MarketsAPIClient {
         let request = URLRequest(url: url)
 
         return apiClient.run(request)
-            .eraseToAnyPublisher()
     }
 
 }
