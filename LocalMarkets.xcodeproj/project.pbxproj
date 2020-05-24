@@ -195,10 +195,10 @@
 		4E7997D52472021D001C8493 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4E7F12372479E4E9003D5893 /* Location.swift */,
 				4E7F123A2479E6D6003D5893 /* NearbyMarket.swift */,
 				4E7F12392479E6D6003D5893 /* NearbyMarketDetails.swift */,
 				4E7F12422479E8A2003D5893 /* Market.swift */,
+				4E7F12372479E4E9003D5893 /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
