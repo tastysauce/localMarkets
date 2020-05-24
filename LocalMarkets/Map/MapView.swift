@@ -13,6 +13,7 @@ import Combine
 struct MapView: UIViewRepresentable {
 
     @EnvironmentObject var mapViewModel: MapViewModel
+    @EnvironmentObject var localMarketsViewModel: LocalMarketsViewModel
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
@@ -20,15 +21,33 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
 
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-        guard mapViewModel.currentMapCoordinate.coordinate != kCLLocationCoordinate2DInvalid else {
+    func updateUIView(_ mapView: MKMapView, context: Context) {
+        updateLocation(mapView, newCoordinate: mapViewModel.currentMapCoordinate.coordinate)
+        updateAnnotations(mapView, annotations: localMarketsViewModel.marketAnnotations)
+    }
+
+    private func updateLocation(_ mapView: MKMapView, newCoordinate: CLLocationCoordinate2D) {
+        guard newCoordinate != kCLLocationCoordinate2DInvalid else {
             print("Invalid")
+            return
+        }
+
+        guard mapView.centerCoordinate != newCoordinate else {
             return
         }
 
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: mapViewModel.currentMapCoordinate.coordinate, span: span)
-        uiView.setRegion(region, animated: true)
+        mapView.setRegion(region, animated: true)
+    }
+
+    private func updateAnnotations(_ mapView: MKMapView, annotations: [MKAnnotation]) {
+
+        let newAnnotations = annotations.filter { annotation in
+            return !mapView.annotations.contains(where: { $0.coordinate == annotation.coordinate })
+        }
+
+        mapView.addAnnotations(newAnnotations)
     }
 
     func makeCoordinator() -> Coordinator {

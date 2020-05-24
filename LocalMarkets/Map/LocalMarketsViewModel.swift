@@ -12,12 +12,19 @@ import Combine
 class LocalMarketsViewModel: ObservableObject {
 
     @Published var markets: [Market] = []
+    @Published var marketAnnotations: [MarketAnnotation] = []
 
     private let marketsAPIClient: MarketsAPIClient
     private var disposeBag: Set<AnyCancellable> = []
 
     init(marketsAPIClient: MarketsAPIClient) {
         self.marketsAPIClient = marketsAPIClient
+
+        $markets
+            .map { $0.map { MarketAnnotation(market: $0) } }
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.marketAnnotations, on: self)
+            .store(in: &disposeBag)
     }
 
     public func getNearbyMarkets(for currentLocation: Location) {

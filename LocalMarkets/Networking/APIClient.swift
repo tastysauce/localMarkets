@@ -29,6 +29,7 @@ struct APIClient {
                 return result.data
             }
             .decode(type: T.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 

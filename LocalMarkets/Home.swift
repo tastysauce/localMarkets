@@ -33,11 +33,11 @@ struct Home: View {
                 if localMarkets.markets.isEmpty {
                     Text("lol")
                 } else {
-                    List {
-                        ForEach(localMarkets.markets, id: \.id) { market in
-                            Text("name: \(market.name)")
-                        }
-                    }
+//                    List {
+//                        ForEach(localMarkets.markets, id: \.id) { market in
+//                            Text("name: \(market.name)")
+//                        }
+//                    }
                 }
             }
         }
