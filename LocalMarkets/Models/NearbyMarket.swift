@@ -10,10 +10,10 @@ import Foundation
 
 struct NearbyMarketsResponse: Codable {
 
-    var markets: [NearbyMarket]
+    var marketsInResponse: [NearbyMarket]
 
     enum CodingKeys: String, CodingKey {
-        case markets = "results"
+        case marketsInResponse = "results"
     }
     
 }

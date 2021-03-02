@@ -31,7 +31,7 @@ struct Home: View {
                 }
 
                 if localMarkets.markets.isEmpty {
-                    Text("lol")
+                    Text("No markets")
                 } else {
 //                    List {
 //                        ForEach(localMarkets.markets, id: \.id) { market in

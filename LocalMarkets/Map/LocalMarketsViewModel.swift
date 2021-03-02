@@ -20,6 +20,7 @@ class LocalMarketsViewModel: ObservableObject {
     init(marketsAPIClient: MarketsAPIClient) {
         self.marketsAPIClient = marketsAPIClient
 
+        // Add annotations to the map once we have markets
         $markets
             .map { $0.map { MarketAnnotation(market: $0) } }
             .assign(to: \.marketAnnotations, on: self)
@@ -28,8 +29,8 @@ class LocalMarketsViewModel: ObservableObject {
 
     public func getNearbyMarkets(for currentLocation: Location) {
         marketsAPIClient.requestMarkets(nearby: currentLocation)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .map(\.markets)
+            .subscribe(on: DispatchQueue.global(qos: .userInitiated))
+            .map(\.marketsInResponse)
             .flatMap { self.getDetailsForAll(nearbyMarkets: $0) }
             .receive(on: DispatchQueue.main)
             .replaceError(with: [])
