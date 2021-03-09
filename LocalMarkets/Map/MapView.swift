@@ -42,7 +42,6 @@ struct MapView: UIViewRepresentable {
     }
 
     private func updateAnnotations(_ mapView: MKMapView, annotations: [MKAnnotation]) {
-
         let newAnnotations = annotations.filter { annotation in
             return !mapView.annotations.contains(where: { $0.coordinate == annotation.coordinate })
         }
@@ -50,26 +49,33 @@ struct MapView: UIViewRepresentable {
         mapView.addAnnotations(newAnnotations)
     }
 
+    func marketAnnotationSelected(annotation: MarketAnnotation) {
+        localMarketsViewModel.marketAnnotationSelected(id: annotation.id)
+    }
+
     func makeCoordinator() -> Coordinator {
-        Coordinator(
-            parent: self,
-            mapViewModel: mapViewModel
-        )
+        Coordinator(parent: self)
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
 
         private let parent: MapView
-        private let mapViewModel: MapViewModel
 
-        init(parent: MapView,
-             mapViewModel: MapViewModel) {
+        init(parent: MapView) {
             self.parent = parent
-            self.mapViewModel = mapViewModel
         }
 
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            mapViewModel.currentMapCoordinate = Location(coordinate: mapView.centerCoordinate)
+            parent.mapViewModel.currentMapCoordinate = Location(coordinate: mapView.centerCoordinate)
+        }
+
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            guard let marketAnnotation = view.annotation as? MarketAnnotation else {
+                print("Not the right annotation")
+                return
+            }
+
+            parent.marketAnnotationSelected(annotation: marketAnnotation)
         }
 
     }

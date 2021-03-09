@@ -30,6 +30,7 @@
 		4E7F12412479E754003D5893 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12402479E754003D5893 /* LocationProvider.swift */; };
 		4E7F12432479E8A2003D5893 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12422479E8A2003D5893 /* Market.swift */; };
 		4E7F12452479F2DF003D5893 /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */; };
+		4EFF1E3625EDCBAB00FF8684 /* MarketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		4E7F12402479E754003D5893 /* LocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		4E7F12422479E8A2003D5893 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
+		4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				4E79979224709A5A001C8493 /* SceneDelegate.swift */,
 				4E7997C324709A9E001C8493 /* Home.swift */,
 				4E7F12282479A524003D5893 /* Map */,
+				4EFF1E3425EDCB9600FF8684 /* MarketDetail */,
 				4E7997D02471BED1001C8493 /* Networking */,
 				4E7997D52472021D001C8493 /* Models */,
 				4E7F123F2479E754003D5893 /* Location Provider */,
@@ -230,6 +233,14 @@
 				4E7F12402479E754003D5893 /* LocationProvider.swift */,
 			);
 			path = "Location Provider";
+			sourceTree = "<group>";
+		};
+		4EFF1E3425EDCB9600FF8684 /* MarketDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */,
+			);
+			path = MarketDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E7997D42472016E001C8493 /* MarketsAPIClient.swift in Sources */,
+				4EFF1E3625EDCBAB00FF8684 /* MarketDetailView.swift in Sources */,
 				4E7F122D2479A55F003D5893 /* MapViewModel.swift in Sources */,
 				4E7997D22471BEFA001C8493 /* APIClient.swift in Sources */,
 				4E7F12362479E0BF003D5893 /* MarketsAPIClient+Testing.swift in Sources */,

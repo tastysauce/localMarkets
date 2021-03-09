@@ -10,21 +10,17 @@ import Foundation
 import MapKit
 
 class MarketAnnotation: NSObject, MKAnnotation {
+
+    let id: String
     let title: String?
     let subtitle: String?
     let coordinate: CLLocationCoordinate2D
 
     init(market: Market) {
+        self.id = market.id
         self.title = market.name
         self.subtitle = "something"
         self.coordinate = market.location.coordinate
     }
 
-    init(title: String?,
-         subtitle: String?,
-         coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.subtitle = subtitle
-        self.coordinate = coordinate
-    }
 }

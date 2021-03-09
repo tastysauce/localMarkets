@@ -12,11 +12,15 @@ struct Home: View {
 
     @EnvironmentObject private var localMarkets: LocalMarketsViewModel
     @EnvironmentObject private var mapViewModel: MapViewModel
+    private let mapView = MapView()
+    @State private var isPresented = false
+    
 
     var body: some View {
+        
         ZStack {
-            MapView()
-                .environmentObject(mapViewModel)
+            self.mapView
+                .edgesIgnoringSafeArea(.all)
 
             VStack {
                 Button(action: {
@@ -29,18 +33,17 @@ struct Home: View {
                 }) {
                     Text("Center map on me")
                 }
-
-                if localMarkets.markets.isEmpty {
-                    Text("No markets")
-                } else {
-//                    List {
-//                        ForEach(localMarkets.markets, id: \.id) { market in
-//                            Text("name: \(market.name)")
-//                        }
-//                    }
-                }
             }
         }
+        .onReceive(self.localMarkets.selectedMarket, perform: { markets in
+            isPresented = true
+        })
+        .sheet(isPresented: $isPresented, onDismiss: {
+            isPresented = false
+        }, content: {
+            MarketDetailView()
+        })
+
     }
     
 }

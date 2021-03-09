@@ -13,6 +13,7 @@ class LocalMarketsViewModel: ObservableObject {
 
     @Published var markets: [Market] = []
     @Published var marketAnnotations: [MarketAnnotation] = []
+    public var selectedMarket = PassthroughSubject<Market, Never>()
 
     private let marketsAPIClient: MarketsAPIClient
     private var disposeBag: Set<AnyCancellable> = []
@@ -36,6 +37,15 @@ class LocalMarketsViewModel: ObservableObject {
             .replaceError(with: [])
             .assign(to: \.markets, on: self)
             .store(in: &disposeBag)
+    }
+
+    public func marketAnnotationSelected(id: String) {
+        // Find the market by ID and publish it
+        guard let market = self.markets.first(where: { return $0.id == id } ) else {
+            print("Couldn't find market by ID")
+            return
+        }
+        selectedMarket.send(market)
     }
 
     private func getDetailsForAll(nearbyMarkets: [NearbyMarket]) -> AnyPublisher<[Market], Error> {
