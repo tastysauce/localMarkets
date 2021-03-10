@@ -61,8 +61,8 @@ class LocalMarketsViewModel: ObservableObject {
             .eraseToAnyPublisher()
     }
 
-    static var mockLocalMarkets: LocalMarketsViewModel {
+    public static var mockLocalMarkets: LocalMarketsViewModel = {
         return LocalMarketsViewModel(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
-    }
+    }()
 
 }

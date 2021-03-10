@@ -55,4 +55,8 @@ struct Market {
         return Location(latitude: latitude, longitude: longitude)
     }
 
+    public static var mockMarket: Market = {
+        Market(nearbyMarket: NearbyMarket.mockNearbyMarket, nearbyMarketDetails: NearbyMarketDetails.mockNearbyMarketDetails)
+    }()
+
 }

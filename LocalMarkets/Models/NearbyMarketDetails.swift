@@ -34,4 +34,7 @@ struct NearbyMarketDetails: Codable {
         case schedule = "Schedule"
     }
 
+    public static var mockNearbyMarketDetails: NearbyMarketDetails = {
+        NearbyMarketDetails(address: "123 fake drive", googleMapsLink: URL(string: "www.google.com")!, products: "Foods", schedule: "All day")
+    }()
 }

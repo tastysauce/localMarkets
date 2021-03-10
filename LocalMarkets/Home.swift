@@ -25,16 +25,18 @@ struct Home: View {
         ZStack {
             MapView(localMarketsViewModel: localMarkets, mapViewModel: mapViewModel)
                 .edgesIgnoringSafeArea(.all)
+                // Receives taps of market annnotations
                 .onReceive(localMarkets.$selectedMarket) { market in
                     guard let _ = market else {
                         return
                     }
                     annotationViewIsPresented = true
                 }
+                
                 .sheet(isPresented: $annotationViewIsPresented) {
                     annotationViewIsPresented = false
                 } content: {
-                    MarketDetailView()
+                    MarketDetailView(market: localMarkets.selectedMarket)
                 }
 
             VStack {
@@ -54,9 +56,7 @@ struct Home: View {
             }
 
         }
-
-
-
+        
     }
 
 }

@@ -47,5 +47,17 @@ struct NearbyMarket: Codable, Identifiable {
         name = components.suffix(from: 1).joined(separator: " ")
         distance = componentDistance
     }
+
+    init(id: String,
+         name: String,
+         distance: Double) {
+        self.id = id
+        self.name = name
+        self.distance = distance
+    }
+
+    public static var mockNearbyMarket: NearbyMarket = {
+        NearbyMarket(id: "1", name: "Whole Foods", distance: 4)
+    }()
     
 }

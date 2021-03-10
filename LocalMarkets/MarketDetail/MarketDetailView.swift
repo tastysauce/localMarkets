@@ -9,13 +9,20 @@
 import SwiftUI
 
 struct MarketDetailView: View {
+
+    private let market: Market?
+
+    init(market: Market?) {
+        self.market = market
+    }
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text(self.market?.name ?? "what")
     }
 }
 
 struct MarketDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MarketDetailView()
+        MarketDetailView(market: Market.mockMarket)
     }
 }
