@@ -17,8 +17,8 @@ public func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Boo
 
 struct Location: Equatable {
 
-    var latitude: Double
-    var longitude: Double
+    let latitude: Double
+    let longitude: Double
 
     init(latitude: Double, longitude: Double) {
         self.latitude = latitude

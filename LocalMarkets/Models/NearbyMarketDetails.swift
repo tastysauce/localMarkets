@@ -11,7 +11,7 @@ import Foundation
 
 struct NearbyMarketDetailsResponse: Codable {
 
-    var marketDetails: NearbyMarketDetails
+    let marketDetails: NearbyMarketDetails
 
     enum CodingKeys: String, CodingKey {
         case marketDetails = "marketdetails"
@@ -21,10 +21,10 @@ struct NearbyMarketDetailsResponse: Codable {
 
 struct NearbyMarketDetails: Codable {
 
-    var address: String
-    var googleMapsLink: URL
-    var products: String // TODO: Make an enum for the products!
-    var schedule: String // TODO: This will need parsing
+    let address: String
+    let googleMapsLink: URL
+    let products: String // TODO: Make an enum for the products!
+    let schedule: String // TODO: This will need parsing
     // Calculated var lat/lon
 
     enum CodingKeys: String, CodingKey {

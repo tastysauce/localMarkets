@@ -10,7 +10,7 @@ import Foundation
 
 struct NearbyMarketsResponse: Codable {
 
-    var marketsInResponse: [NearbyMarket]
+    let marketsInResponse: [NearbyMarket]
 
     enum CodingKeys: String, CodingKey {
         case marketsInResponse = "results"
@@ -29,9 +29,9 @@ struct NearbyMarket: Codable, Identifiable {
         case name = "marketname"
     }
 
-    var id: String
-    var name: String
-    var distance: Double
+    let id: String
+    let name: String
+    let distance: Double
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
