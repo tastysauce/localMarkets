@@ -13,7 +13,7 @@ class LocalMarketsViewModel: ObservableObject {
 
     @Published var markets: [Market] = []
     @Published var marketAnnotations: [MarketAnnotation] = []
-    public var selectedMarket = PassthroughSubject<Market, Never>()
+    @Published var selectedMarket: Market?
 
     private let marketsAPIClient: MarketsAPIClient
     private var disposeBag: Set<AnyCancellable> = []
@@ -45,7 +45,7 @@ class LocalMarketsViewModel: ObservableObject {
             print("Couldn't find market by ID")
             return
         }
-        selectedMarket.send(market)
+        selectedMarket = market
     }
 
     private func getDetailsForAll(nearbyMarkets: [NearbyMarket]) -> AnyPublisher<[Market], Error> {

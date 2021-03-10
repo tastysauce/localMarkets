@@ -29,10 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let nearbyMarkets = LocalMarketsViewModel(marketsAPIClient: MarketsAPIClient(apiClient: APIClient()))
         let mapViewModel = MapViewModel(locationProvider: locationProvider)
 
-        let contentView = Home()
+        let contentView = Home(localMarkets: nearbyMarkets, mapViewModel: mapViewModel)
             .environment(\.managedObjectContext, context)
-            .environmentObject(nearbyMarkets)
-            .environmentObject(mapViewModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

@@ -12,8 +12,14 @@ import Combine
 
 struct MapView: UIViewRepresentable {
 
-    @EnvironmentObject var mapViewModel: MapViewModel
-    @EnvironmentObject var localMarketsViewModel: LocalMarketsViewModel
+    @ObservedObject var localMarketsViewModel: LocalMarketsViewModel
+    @ObservedObject var mapViewModel: MapViewModel
+
+    init(localMarketsViewModel: LocalMarketsViewModel,
+         mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+        self.localMarketsViewModel = localMarketsViewModel
+    }
 
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView(frame: .zero)
@@ -84,6 +90,6 @@ struct MapView: UIViewRepresentable {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(localMarketsViewModel: LocalMarketsViewModel.mockLocalMarkets, mapViewModel: MapViewModel(locationProvider: LocationProvider()))
     }
 }

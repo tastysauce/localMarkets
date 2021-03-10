@@ -10,48 +10,59 @@ import SwiftUI
 
 struct Home: View {
 
-    @EnvironmentObject private var localMarkets: LocalMarketsViewModel
-    @EnvironmentObject private var mapViewModel: MapViewModel
-    private let mapView = MapView()
-    @State private var isPresented = false
-    
+    @ObservedObject private var localMarkets: LocalMarketsViewModel
+    @ObservedObject private var mapViewModel: MapViewModel
+    @State private var annotationViewIsPresented = false
+
+    init(localMarkets: LocalMarketsViewModel,
+         mapViewModel: MapViewModel) {
+        self.localMarkets = localMarkets
+        self.mapViewModel = mapViewModel
+    }
 
     var body: some View {
-        
+
         ZStack {
-            self.mapView
+            MapView(localMarketsViewModel: localMarkets, mapViewModel: mapViewModel)
                 .edgesIgnoringSafeArea(.all)
+                .onReceive(localMarkets.$selectedMarket) { market in
+                    guard let _ = market else {
+                        return
+                    }
+                    annotationViewIsPresented = true
+                }
+                .sheet(isPresented: $annotationViewIsPresented) {
+                    annotationViewIsPresented = false
+                } content: {
+                    MarketDetailView()
+                }
 
             VStack {
+
                 Button(action: {
                     self.localMarkets.getNearbyMarkets(for: self.mapViewModel.currentMapCoordinate)
                 }) {
                     Text("Get nearby markets")
                 }
+
                 Button(action: {
                     self.mapViewModel.centerOnUser()
                 }) {
                     Text("Center map on me")
                 }
+
             }
+
         }
-        .onReceive(self.localMarkets.selectedMarket, perform: { markets in
-            isPresented = true
-        })
-        .sheet(isPresented: $isPresented, onDismiss: {
-            isPresented = false
-        }, content: {
-            MarketDetailView()
-        })
+
+
 
     }
-    
+
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
-            .environmentObject(LocalMarketsViewModel.mockLocalMarkets)
-            .environmentObject(MapViewModel(locationProvider: LocationProvider()))
+        Home(localMarkets: LocalMarketsViewModel.mockLocalMarkets, mapViewModel: MapViewModel(locationProvider: LocationProvider()))
     }
 }
