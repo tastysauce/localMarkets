@@ -17,7 +17,11 @@ struct MarketDetailView: View {
     }
 
     var body: some View {
-        Text(self.market?.name ?? "what")
+        if let market = market {
+            MarketDetailList(market: market)
+        } else {
+            // show error
+        }
     }
 }
 

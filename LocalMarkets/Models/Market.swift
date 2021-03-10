@@ -11,16 +11,16 @@ import Foundation
 struct Market {
 
     // from NearbyMarket
-    var id: String
-    var name: String
-    var distance: Double
+    let id: String
+    let name: String
+    let distance: Double
 
     // from NearbyMarketDetails
-    var address: String
-    var googleMapsLink: URL
-    var products: String // TODO: Make an enum for the products!
-    var schedule: String // TODO: This will need parsing
-    var location: Location
+    let address: String
+    let googleMapsLink: URL
+    let products: String // TODO: Make an enum for the products!
+    let schedule: String // TODO: This will need parsing
+    let location: Location
 
     init(
         nearbyMarket: NearbyMarket,

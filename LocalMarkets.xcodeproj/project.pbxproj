@@ -30,6 +30,8 @@
 		4E7F12412479E754003D5893 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12402479E754003D5893 /* LocationProvider.swift */; };
 		4E7F12432479E8A2003D5893 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12422479E8A2003D5893 /* Market.swift */; };
 		4E7F12452479F2DF003D5893 /* MarketAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */; };
+		4EEC41E225F8732F00A25331 /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC41E125F8732F00A25331 /* ListRow.swift */; };
+		4EEC41EA25F88E6700A25331 /* MarketDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EEC41E925F88E6700A25331 /* MarketDetailList.swift */; };
 		4EFF1E3625EDCBAB00FF8684 /* MarketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		4E7F12402479E754003D5893 /* LocationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		4E7F12422479E8A2003D5893 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		4E7F12442479F2DF003D5893 /* MarketAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketAnnotation.swift; sourceTree = "<group>"; };
+		4EEC41E125F8732F00A25331 /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
+		4EEC41E925F88E6700A25331 /* MarketDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailList.swift; sourceTree = "<group>"; };
 		4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +148,7 @@
 				4E7997D52472021D001C8493 /* Models */,
 				4E7F123F2479E754003D5893 /* Location Provider */,
 				4E7F122524760D73003D5893 /* Nutty Extensions */,
+				4EEC41E025F872E700A25331 /* UI Components */,
 				4E79979924709A5B001C8493 /* Assets.xcassets */,
 				4E79979E24709A5B001C8493 /* LaunchScreen.storyboard */,
 				4E7997A124709A5B001C8493 /* Info.plist */,
@@ -235,10 +240,19 @@
 			path = "Location Provider";
 			sourceTree = "<group>";
 		};
+		4EEC41E025F872E700A25331 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				4EEC41E125F8732F00A25331 /* ListRow.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 		4EFF1E3425EDCB9600FF8684 /* MarketDetail */ = {
 			isa = PBXGroup;
 			children = (
 				4EFF1E3525EDCBAB00FF8684 /* MarketDetailView.swift */,
+				4EEC41E925F88E6700A25331 /* MarketDetailList.swift */,
 			);
 			path = MarketDetail;
 			sourceTree = "<group>";
@@ -306,7 +320,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Michael Koch";
 				TargetAttributes = {
 					4E79978C24709A5A001C8493 = {
@@ -382,6 +396,7 @@
 				4E7F123C2479E6D6003D5893 /* NearbyMarket.swift in Sources */,
 				4E79979624709A5A001C8493 /* LocalMarkets.xcdatamodeld in Sources */,
 				4E79979124709A5A001C8493 /* AppDelegate.swift in Sources */,
+				4EEC41EA25F88E6700A25331 /* MarketDetailList.swift in Sources */,
 				4E7F12382479E4E9003D5893 /* Location.swift in Sources */,
 				4E7F122724760D84003D5893 /* Combine+WithLatestFrom.swift in Sources */,
 				4E7F12412479E754003D5893 /* LocationProvider.swift in Sources */,
@@ -389,6 +404,7 @@
 				4E7F12452479F2DF003D5893 /* MarketAnnotation.swift in Sources */,
 				4E7F12432479E8A2003D5893 /* Market.swift in Sources */,
 				4E7F123E2479E732003D5893 /* LocalMarketsViewModel.swift in Sources */,
+				4EEC41E225F8732F00A25331 /* ListRow.swift in Sources */,
 				4E7F122C2479A55F003D5893 /* MapView.swift in Sources */,
 				4E7F123B2479E6D6003D5893 /* NearbyMarketDetails.swift in Sources */,
 				4E79979324709A5A001C8493 /* SceneDelegate.swift in Sources */,
@@ -464,6 +480,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -524,6 +541,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
